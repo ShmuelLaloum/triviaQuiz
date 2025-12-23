@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import type { levels } from "../types/type";
+import type { Levels } from "../types/type";
 import "../styles/style.css";
 
 export default function SelectLevel() {
-  const levels: levels[] = [
+  const levels: Levels[] = [
     { name: "easy", color: "#51cf66" },
     { name: "medium", color: "#ffa94d" },
     { name: "hard", color: "#ff6b6b" },

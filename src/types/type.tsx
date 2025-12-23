@@ -1,4 +1,4 @@
-export type levels = {
+export type Levels = {
   name: string;
   color: string;
 };
