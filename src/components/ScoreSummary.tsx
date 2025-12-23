@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { useQuiz } from "../components/QuizContext";
+import { useQuiz } from "../context/QuizContext";
+import "../types/type"
 
 export default function ScoreSummary() {
   const {
@@ -28,15 +29,7 @@ export default function ScoreSummary() {
           ))}
           <Link
             to={"/"}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "black",
-              color: "white",
-              textDecoration: "none",
-              borderRadius: "8px",
-              fontWeight: "bold",
-              transition: "transform 0.2s",
-            }}
+            className="restartBtn"
             onMouseEnter={(e) =>
               (e.currentTarget.style.transform = "scale(1.05)")
             }

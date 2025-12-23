@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useQuiz } from "./QuizContext";
+import { useEffect, useState, useRef } from "react";
+import { useQuiz } from "../context/QuizContext";
 import type { QuizContainerProps } from "../types/type";
 import Question from "./Question";
 import ScoreSummary from "./ScoreSummary";
@@ -11,21 +11,38 @@ import Box from "@mui/material/Box";
 export default function QuizContainer({ level }: QuizContainerProps) {
   const { questions, setQuestions, currentQuestionIndex } = useQuiz();
   const [loading, setLoading] = useState<boolean>(true);
-  let hasFetched = false;
+  const [error, setError] = useState<string | null>(null);
+  const hasFetched = useRef(false);
 
   useEffect(() => {
-    if (hasFetched) return;
-    hasFetched = true;
+    if (hasFetched.current) return;
+    hasFetched.current = true;
     const fetchQuestions = async () => {
       setLoading(true);
+      setError(null);
+
       try {
         const res = await fetch(
           `https://opentdb.com/api.php?amount=10&type=multiple&difficulty=${level}`
         );
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch questions");
+        }
+
         const data = await res.json();
+
+        if (!data.results || data.results.length === 0) {
+          throw new Error("No questions available");
+        }
+
         setQuestions(data.results);
       } catch (err) {
-        console.error(err);
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Something went wrong");
+        }
       } finally {
         setLoading(false);
       }
@@ -39,8 +56,14 @@ export default function QuizContainer({ level }: QuizContainerProps) {
         <CircularProgress />
       </Box>
     );
-  if (!questions.length) return <p>No questions found</p>;
-
+  if (error) {
+    return (
+      <>
+        😕 Oops
+        {error}
+      </>
+    );
+  }
   return (
     <div className="centerPage">
       {currentQuestionIndex >= questions.length ? (

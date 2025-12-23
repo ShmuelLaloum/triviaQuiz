@@ -10,7 +10,7 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
   const [score, setScore] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState<Question[]>([]);
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
-  const [hasFetched, setHasFetched] = useState<boolean>(Boolean);
+  const [hasFetched, setHasFetched] = useState<boolean>(false);
 
   return (
     <QuizContext.Provider

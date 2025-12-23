@@ -47,3 +47,13 @@
   background-color: #f44336;
   color: white;
 }
+.restartBtn {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+

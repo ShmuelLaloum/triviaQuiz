@@ -1,7 +1,8 @@
-import { useQuiz } from "../components/QuizContext";
+import { useQuiz } from "../context/QuizContext";
 
 export default function ProgressBar() {
   const { currentQuestionIndex, questions } = useQuiz();
+  if(questions.length === 0){return}
   const percent = (currentQuestionIndex / questions.length) * 100;
 
   return (

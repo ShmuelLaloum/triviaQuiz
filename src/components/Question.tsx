@@ -1,4 +1,4 @@
-import { useQuiz } from "../components/QuizContext";
+import { useQuiz } from "../context/QuizContext";
 import Option from "./Option";
 import type { QuestionProps } from "../types/type";
 import { useState } from "react";
