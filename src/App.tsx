@@ -5,7 +5,7 @@ function App() {
   return (
       <Routes>
         <Route path="/" element={<SelectLevel />} />
-        <Route path="/QuizPage" element={<QuizPage />} />
+        <Route path="/quizPage" element={<QuizPage />} />
       </Routes>
   );
 }
