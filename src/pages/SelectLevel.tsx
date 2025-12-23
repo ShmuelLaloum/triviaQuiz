@@ -16,9 +16,9 @@ export default function SelectLevel() {
       <p style={{ fontSize: "18px", marginBottom: "20px" }}>Choose level:</p>
 
       <div style={{ display: "flex", gap: "15px" }}>
-        {levels.map((level, index) => (
+        {levels.map((level) => (
           <Link
-            key={index}
+            key={level.name}
             to={`/QuizPage?level=${level.name}`}
             style={{
               padding: "10px 20px",
